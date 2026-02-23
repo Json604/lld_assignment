@@ -4,7 +4,7 @@ public class SmsSender extends NotificationSender {
     @Override
     public SendResult send(Notification n) {
         System.out.println("SMS -> to=" + n.phone + " body=" + n.body);
-        audit.add("sms sent");
+        audit.add("sms sent to " + n.phone);
         return SendResult.success();
     }
 }

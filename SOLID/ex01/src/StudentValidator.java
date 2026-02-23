@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class StudentValidator {
+    // only these programs are valid for onboarding
     private static final Set<String> ALLOWED_PROGRAMS = Set.of("CSE", "AI", "SWE");
 
     public static List<String> validate(Map<String, String> data) {

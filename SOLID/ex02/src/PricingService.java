@@ -9,12 +9,14 @@ public class PricingService {
         this.discCalc = dc;
     }
 
+    // calculates the subtotal by summing up price * qty for each line
     public double subtotal(List<OrderLine> lines, Map<String, MenuItem> menu) {
-        double total = 0;
-        for (OrderLine ol : lines) {
-            total += menu.get(ol.itemId).price * ol.qty;
+        double sum = 0;
+        for (OrderLine line : lines) {
+            MenuItem item = menu.get(line.itemId);
+            sum += item.price * line.qty;
         }
-        return total;
+        return sum;
     }
 
     public double getTaxPercent(String custType) {
@@ -25,7 +27,7 @@ public class PricingService {
         return subtotal * taxPct / 100.0;
     }
 
-    public double calcDiscount(String custType, double sub, int numLines) {
-        return discCalc.discountAmount(custType, sub, numLines);
+    public double calcDiscount(String custType, double subtotal, int numLines) {
+        return discCalc.discountAmount(custType, subtotal, numLines);
     }
 }

@@ -8,6 +8,7 @@ public class EligibilityEngine {
     }
 
     public EligibilityEngineResult evaluate(StudentProfile s) {
+        // check rules in order, stop at first failure
         for (EligibilityRule rule : rules) {
             String reason = rule.check(s);
             if (reason != null) {

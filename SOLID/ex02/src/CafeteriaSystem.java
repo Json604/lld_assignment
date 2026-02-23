@@ -15,16 +15,19 @@ public class CafeteriaSystem {
     }
 
     public void processOrder(String invoiceNo, String custType, List<OrderLine> lines) {
-        double sub = pricing.subtotal(lines, menu);
+        // calculate all the pricing components
+        double subtotal = pricing.subtotal(lines, menu);
         double taxPct = pricing.getTaxPercent(custType);
-        double tax = pricing.calcTax(sub, taxPct);
-        double disc = pricing.calcDiscount(custType, sub, lines.size());
-        double total = sub + tax - disc;
+        double taxAmt = pricing.calcTax(subtotal, taxPct);
+        double discAmt = pricing.calcDiscount(custType, subtotal, lines.size());
+        double grandTotal = subtotal + taxAmt - discAmt;
 
-        String text = invoicePrinter.format(invoiceNo, lines, menu, sub, taxPct, tax, disc, total);
-        System.out.println(text);
+        // format and print the invoice
+        String invoiceText = invoicePrinter.format(invoiceNo, lines, menu, subtotal, taxPct, taxAmt, discAmt, grandTotal);
+        System.out.println(invoiceText);
 
-        store.save(invoiceNo, text);
-        System.out.println("Saved invoice: " + invoiceNo + " (lines=" + store.countLines(invoiceNo) + ")");
+        // persist it
+        store.save(invoiceNo, invoiceText);
+        System.out.println("Invoice " + invoiceNo + " saved (" + store.countLines(invoiceNo) + " lines)");
     }
 }

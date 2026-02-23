@@ -1,24 +1,26 @@
 public class Demo06 {
     public static void main(String[] args) {
-        System.out.println("=== Notification Demo ===");
+        System.out.println("--- Notification System ---");
 
         AuditLog audit = new AuditLog();
-        Notification n = new Notification("Welcome", "Hello and welcome to SST!",
-                "riya@sst.edu", "9876543210");
+        Notification n = new Notification("Welcome", "Hey welcome to the university portal!",
+                "kartikey@university.edu", "9012345678");
 
-        NotificationSender email = new EmailSender(audit);
-        NotificationSender sms = new SmsSender(audit);
-        NotificationSender wa = new WhatsAppSender(audit);
+        // try sending via all channels
+        NotificationSender[] senders = {
+            new EmailSender(audit),
+            new SmsSender(audit),
+            new WhatsAppSender(audit)
+        };
 
-        email.send(n);
-        sms.send(n);
-
-        SendResult waResult = wa.send(n);
-        if (!waResult.ok) {
-            System.out.println("WA ERROR: " + waResult.message);
-            audit.add("WA failed");
+        for (NotificationSender sender : senders) {
+            SendResult res = sender.send(n);
+            if (!res.ok) {
+                System.out.println("FAILED: " + res.message);
+                audit.add("send failed via " + sender.getClass().getSimpleName());
+            }
         }
 
-        System.out.println("AUDIT entries=" + audit.size());
+        System.out.println("Total audit entries: " + audit.size());
     }
 }

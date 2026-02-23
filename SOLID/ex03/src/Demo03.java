@@ -2,11 +2,13 @@ import java.util.List;
 
 public class Demo03 {
     public static void main(String[] args) {
-        System.out.println("=== Placement Eligibility ===");
+        System.out.println("--- Placement Eligibility Check ---");
 
+        // sample student data
         StudentProfile s = new StudentProfile(
-                "23BCS1001", "Ayaan", 8.10, 72, 18, LegacyFlags.NONE);
+                "23SWE2045", "Kartikey", 7.85, 78, 22, LegacyFlags.NONE);
 
+        // set up all the eligibility rules
         List<EligibilityRule> rules = List.of(
                 new DisciplinaryRule(),
                 new CgrRule(),
@@ -17,9 +19,11 @@ public class Demo03 {
         EligibilityEngine engine = new EligibilityEngine(rules);
         EligibilityEngineResult result = engine.evaluate(s);
 
+        // print the report
         ReportPrinter printer = new ReportPrinter();
         printer.print(s, result);
 
+        // save result
         FakeEligibilityStore store = new FakeEligibilityStore();
         store.save(s.rollNo, result.status);
     }

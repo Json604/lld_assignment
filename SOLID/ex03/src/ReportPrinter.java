@@ -4,6 +4,8 @@ public class ReportPrinter {
                 + ", attendance=" + s.attendancePct + ", credits=" + s.earnedCredits
                 + ", flag=" + LegacyFlags.nameOf(s.disciplinaryFlag) + ")");
         System.out.println("RESULT: " + r.status);
-        for (String reason : r.reasons) System.out.println("- " + reason);
+        for (String reason : r.reasons) {
+            System.out.println("- " + reason);
+        }
     }
 }

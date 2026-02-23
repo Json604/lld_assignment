@@ -3,7 +3,9 @@ import java.util.Map;
 public class HostelFeeCalculator {
     private final Map<Integer, RoomPricing> roomPricings;
     private final Map<AddOn, AddOnCharge> addOnCharges;
-    private static final Money DEPOSIT = new Money(5000);
+
+    // fixed deposit amount for all bookings
+    private static final Money SECURITY_DEPOSIT = new Money(5000);
 
     public HostelFeeCalculator(Map<Integer, RoomPricing> roomPricings,
                                Map<AddOn, AddOnCharge> addOnCharges) {
@@ -12,14 +14,16 @@ public class HostelFeeCalculator {
     }
 
     public Money computeMonthly(BookingRequest req) {
+        // start with the base room price
         Money total = roomPricings.get(req.roomType).basePrice();
-        for (AddOn a : req.addOns) {
-            total = total.plus(addOnCharges.get(a).price());
+        // add each selected add-on
+        for (AddOn addon : req.addOns) {
+            total = total.plus(addOnCharges.get(addon).price());
         }
         return total;
     }
 
     public Money deposit() {
-        return DEPOSIT;
+        return SECURITY_DEPOSIT;
     }
 }

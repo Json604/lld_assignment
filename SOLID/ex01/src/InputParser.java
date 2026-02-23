@@ -1,15 +1,16 @@
 import java.util.*;
 
 public class InputParser {
+    // splits "key=val;key2=val2" into a map
     public static Map<String, String> parse(String raw) {
-        Map<String, String> map = new HashMap<>();
-        String[] parts = raw.split(";");
-        for (String part : parts) {
-            String[] kv = part.split("=", 2);
-            if (kv.length == 2) {
-                map.put(kv[0].trim(), kv[1].trim());
+        Map<String, String> result = new HashMap<>();
+        if (raw == null || raw.isBlank()) return result;
+        for (String token : raw.split(";")) {
+            String[] pair = token.split("=", 2);
+            if (pair.length == 2) {
+                result.put(pair[0].trim(), pair[1].trim());
             }
         }
-        return map;
+        return result;
     }
 }

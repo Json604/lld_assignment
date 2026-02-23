@@ -5,7 +5,7 @@ public class Demo01 {
         OnboardingService service = new OnboardingService(db, printer);
 
         printer.printHeader();
-        String input = "name=Riya;email=riya@sst.edu;phone=9876543210;program=CSE";
+        String input = "name=Kartikey;email=kartikey@university.edu;phone=9012345678;program=SWE";
         service.register(input);
 
         printer.printDbDump(db);
