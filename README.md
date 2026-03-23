@@ -10,6 +10,9 @@ Projects
 - `adapter-payments/` — Adapter pattern: unified payment processing interface wrapping incompatible payment SDKs.
 - `flyweight-markers/` — Flyweight pattern: memory-optimized map marker rendering with shared style objects.
 - `proxy-reports/` — Proxy pattern: document access control with lazy loading and caching.
+- `parking-lot/` — Multilevel parking lot with slot assignment by gate proximity, vehicle-slot compatibility, and hourly billing.
+- `pen-design/` — Interface-driven pen hierarchy (ballpoint, fountain, marker) with ink management and refill strategies.
+- `snakes-ladders/` — Snakes & Ladders game engine with random board generation, difficulty levels, and cycle prevention.
 
 SOLID (ex01–ex06)
 -----------------
@@ -82,6 +85,30 @@ Demonstrates the Proxy pattern for document access control and lazy loading.
 You can run a quick verification with:
 
     java com.example.reports.QuickCheck
+
+Parking Lot
+-----------
+Multilevel parking lot simulation with nearest-slot assignment and hourly billing.
+
+    cd parking-lot
+    javac -d out src/com/example/parking/*.java
+    java -cp out com.example.parking.App
+
+Pen Design
+----------
+Demonstrates interface-driven polymorphism with different pen types and ink management.
+
+    cd pen-design
+    javac -d out src/com/example/pen/*.java
+    java -cp out com.example.pen.App
+
+Snakes & Ladders
+----------------
+Interactive Snakes & Ladders game with random board generation and difficulty selection.
+
+    cd snakes-ladders
+    javac -d out src/com/example/snakesladders/*.java
+    java -cp out com.example.snakesladders.App
 
 Notes
 -----
