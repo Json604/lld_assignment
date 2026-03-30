@@ -13,6 +13,8 @@ Projects
 - `parking-lot/` — Multilevel parking lot with slot assignment by gate proximity, vehicle-slot compatibility, and hourly billing.
 - `pen-design/` — Interface-driven pen hierarchy (ballpoint, fountain, marker) with ink management and refill strategies.
 - `snakes-ladders/` — Snakes & Ladders game engine with random board generation, difficulty levels, and cycle prevention.
+- `elevator/` — Multi-elevator simulation with cost-based dispatch, step-driven movement, and a Building facade.
+- `movie-booking/` — Movie ticket booking system with seat categories, atomic reservation, cancellation support, and per-show seat management.
 
 SOLID (ex01–ex06)
 -----------------
@@ -109,6 +111,22 @@ Interactive Snakes & Ladders game with random board generation and difficulty se
     cd snakes-ladders
     javac -d out src/com/example/snakesladders/*.java
     java -cp out com.example.snakesladders.App
+
+Elevator System
+----------------
+Multi-elevator simulation with cost-based dispatch and step-driven movement.
+
+    cd elevator
+    javac -d out src/com/example/elevator/*.java
+    java -cp out com.example.elevator.App
+
+Movie Ticket Booking
+--------------------
+Seat reservation system with category-based pricing, atomic booking, and cancellation.
+
+    cd movie-booking
+    javac -d out src/com/example/movie/*.java
+    java -cp out com.example.movie.App
 
 Notes
 -----
